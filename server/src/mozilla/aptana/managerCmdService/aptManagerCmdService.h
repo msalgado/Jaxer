@@ -37,12 +37,11 @@
 #include <prmon.h>
 #include "nsCOMPtr.h"
 #include "aptIManagerCmdService.h"
+#include "aptManager.h"
 
 #ifdef _WIN32
 #include <Winsock2.h>
 #endif
-
-#include "JaxerDefs.h"
 
 class aptManagerCmdResponse;
 

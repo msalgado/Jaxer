@@ -87,8 +87,7 @@ extern "C" {
 #include "nsIFileStreams.h"
 #include "aptCoreTrace.h"
 #include "aptConsoleListener.h"
-#include "JaxerDefs.h"
-
+#include "Jaxer.h"
 
 #define _TIMESTATS
 

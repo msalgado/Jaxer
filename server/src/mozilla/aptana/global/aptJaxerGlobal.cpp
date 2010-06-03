@@ -50,7 +50,6 @@
 #include "nsJSUtils.h"
 #include "aptJaxerGlobal.h"
 #include "aptIDocumentFetcherService.h"
-#include "jaxerBuildId.h"
 
 #define DEBUG_SEAL
 
@@ -352,7 +351,7 @@ JaxerGlobal_getProperty(JSContext *cx, JSObject *obj, jsval id, jsval *vp)
 	
 	switch (JSVAL_TO_INT(id)) {
 	case JAXER_BUILDNUMBER:
-		*vp = ConvertStringToJSVal(NS_LITERAL_STRING(JAXER_BUILD_ID), cx);
+		*vp = ConvertStringToJSVal(NS_LITERAL_STRING(JAXER_BUILDID), cx);
 		break;
 	}
 	return JS_TRUE;

@@ -37,12 +37,6 @@
 #include <prmon.h>
 #include "aptIManagerCmdResponse.h"
 
-#ifdef _WIN32
-#include <Winsock2.h>
-#endif
-
-#include "JaxerDefs.h"
-
 // {D76A84D2-0F6F-4544-9F3E-4F323509255F}
 #define APT_MANAGERCMDRESPONSE_CID \
 { 0xd76a84d2, 0xf6f, 0x4544, { 0x9f, 0x3e, 0x4f, 0x32, 0x35, 0x9, 0x25, 0x5f } }

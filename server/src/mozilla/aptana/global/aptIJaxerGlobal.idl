@@ -51,7 +51,7 @@ struct JSObject;
 [scriptable, uuid(795526A9-BC37-4d0a-ADDC-4B7B17B0466F)]
 interface aptIJaxerGlobal : nsISupports {
 
-%{ C++
+%{C++
   NS_DEFINE_STATIC_CID_ACCESSOR(APT_JAXERGLOBAL_CID)
 %}
 

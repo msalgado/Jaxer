@@ -60,7 +60,6 @@
 #include "nsICertOverrideService.h"
 #include "nsICommandLineRunner.h"
 #include "nsThreadUtils.h"
-#include "jaxerBuildId.h"
 #include "aptConsoleListener.h"
 #include "nsIConsoleService.h"
 #include "aptCoreTrace.h"
@@ -109,8 +108,11 @@
 #include <errno.h>
 #include <unistd.h>
 #endif
+#ifdef XP_MACOSX
+#include <Carbon/Carbon.h>
+#endif
 
-#include "JaxerDefs.h"
+#include "Jaxer.h"
 
 #if defined(MOZ_WIDGET_GTK2)
 #include <gtk/gtk.h>
@@ -193,9 +195,9 @@ static nsXREAppData appData = {
 	"Aptana, Inc.", //Vendor
 	"Jaxer",        //name of the application
 	MOZ_APP_VERSION,      //Major version
-	JAXER_BUILD_NUMBER, //BuildID
+	JAXER_BUILDID, //BuildID
 	"jaxer@aptana.com", //application UUID
-	"Copyright (c) 2007-2008 Aptana, Inc.", //Copyright
+	"Copyright (c) 2007-2010 Aptana, Inc.", //Copyright
 	0,
 	NULL,
 	NULL,
@@ -205,7 +207,7 @@ static nsXREAppData appData = {
 };
  
 static const char* gPlatformVersion = MOZILLA_VERSION;
-static const char* gPlatformBuildID = JAXER_PLATFORM_BUILD_ID;
+static const char* gPlatformBuildID = JAXER_BUILDID;
 static PRBool gLogConsoleErrors = PR_TRUE;
 static PRBool gSafeMode = PR_FALSE;
 
@@ -1021,9 +1023,9 @@ int jaxerMain(int argc, char **argv)
     
 	/* Jaxer has started up! */
 #if defined(JAXER_PRO_BUILD)
-	gJaxerLog.Log(eNOTICE, "[Jaxer/%s -- starting] %s", JAXER_BUILD_ID, sUser);
+	gJaxerLog.Log(eNOTICE, "[Jaxer/%s -- starting] %s", JAXER_BUILDID, sUser);
 #else
-    gJaxerLog.Log(eNOTICE, "[Jaxer/%s -- starting] Community Edition, licensed by Aptana, Inc. under GPL/APL (see LICENSE.TXT)", JAXER_BUILD_ID);
+    gJaxerLog.Log(eNOTICE, "[Jaxer/%s -- starting] Community Edition, licensed by Aptana, Inc. under GPL/APL (see LICENSE.TXT)", JAXER_BUILDID);
 #endif
 
 

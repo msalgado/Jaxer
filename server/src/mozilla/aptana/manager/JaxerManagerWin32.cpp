@@ -492,7 +492,7 @@ struct Administrator
 #endif
 		{
 			//Write the header back
-			//Write("JaxerManager " JAXER_BUILD_ID "\r\n\r\n");
+			//Write("JaxerManager " JAXER_BUILDID "\r\n\r\n");
 			//Flush();
     
 			//WSABUF buffers[1];
@@ -1551,7 +1551,7 @@ VOID CALLBACK apc_NewAdministrator(ULONG_PTR arg)
 	SOCKET s = cs->m_socket;
     
     Administrator *a = new Administrator(s);
-    a->Write("JaxerManager " JAXER_BUILD_ID "\r\n\r\n");
+    a->Write("JaxerManager " JAXER_BUILDID "\r\n\r\n");
     a->Flush();
     a->BeginRecv();
 }
@@ -2137,7 +2137,7 @@ int CommonMain(int argc, char **argv)
 
     lc.SetVerboseOnError();
 
-    Log(eNOTICE, "JaxerManager " JAXER_BUILD_ID " (web %d, command %d)", 
+    Log(eNOTICE, "JaxerManager " JAXER_BUILDID " (web %d, command %d)", 
 			g_ConnectionSettings[eWEB_JAXER_PROTOCOL].mPort, g_ConnectionSettings[eADMIN_JAXER_PROTOCOL].mPort);
 
     // Create helper threads (and in this order to avoid race conditions).

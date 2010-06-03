@@ -61,7 +61,7 @@
 #endif
 
 #include "jaxerProtocolVersion.h"
-#include "blockDump.h"
+#include "aptBlockDumper.h"
 
 // static HANDLE g_pipe = INVALID_HANDLE_VALUE;
 extern aptCoreTrace gJaxerLog;

@@ -37,7 +37,6 @@
 #include "nsSupportsArray.h"
 #include "aptCoreLog.h"
 #include "aptCoreTrace.h"
-#include "../JaxerLog/log.h"
 
 extern aptCoreTrace gJaxerLog;
 

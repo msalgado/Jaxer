@@ -52,7 +52,6 @@ REQUIRES	= \
 			  string \
 			  pref \
 			  content \
-			  schemavalidation \
 		  	  $(NULL)
 
 XPIDLSRCS	= IFCGXStream.idl
@@ -63,7 +62,14 @@ CPPSRCS		= \
 		match.cpp \
 		tdate_parse.cpp \
 		$(NULL)
-		
+
+LOCAL_INCLUDES = -I$(srcdir)/../manager \
+		    $(NULL)
+
+DEFINES += -DJAXER_VERSION=\"$(JAXER_VERSION)\" \
+		-DJAXER_BUILDID=\"$(JAXER_BUILDID)\" \
+		-DJAXER_FULL_VERSION=\"$(JAXER_VERSION).$(JAXER_BUILDID)\"
+
 ifeq ($(OS_ARCH),SunOS)
 DEFINES += -D_XPG4_2
 endif
@@ -75,6 +81,4 @@ FORCE_STATIC_LIB = 1
 
 include $(topsrcdir)/config/rules.mk
 
-LOCAL_INCLUDES += -I$(srcdir)/.. \
-    $(NULL)
     

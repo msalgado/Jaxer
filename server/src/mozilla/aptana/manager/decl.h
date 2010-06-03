@@ -41,7 +41,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#include "JaxerDefs.h"
 #include "jaxerProtocolVersion.h"
 
 #ifdef _WIN32

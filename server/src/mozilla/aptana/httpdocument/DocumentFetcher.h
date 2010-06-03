@@ -36,7 +36,7 @@
 //#include "aptCoreTrace.h"
 
 #include "nsICookieManager.h"
-#include "JaxerDefs.h"
+#include "aptManagerMsgTypes.h"
 
 class aptIHTTPRequest;
 class aptEventTypeManager;

@@ -39,11 +39,13 @@
 #include "aptICmdCallback.h"
 #include "aptCmdCallbackEvent.h"
 #include "aptManagerEvent.h"
+#include "aptManager.h"
 #include "nsComponentManagerUtils.h"
 
 #ifndef _WIN32
 #include <sys/socket.h>
 #include <errno.h>
+#else
 #endif
 
 

@@ -111,6 +111,9 @@ endif
 
 ifdef JAXER
 tier_gecko_dirs += aptana
+tier_gecko_staticdirs += \
+		aptana/libevent \
+		$(NULL)
 endif
 
 ifdef MOZ_ENABLE_GTK2

@@ -6432,8 +6432,9 @@ MOZILLA_VERSION=`$PERL $srcdir/config/milestone.pl -topsrcdir $srcdir`
 
 FIREFOX_VERSION=`cat $topsrcdir/browser/config/version.txt`
 # JAXER INSERT
-JAXER_VERSION=`cat $topsrcdir/aptana/jaxerBuildId.h | grep JAXER_MAJOR_VERSION | cut -f2 -d\"`
-JAXER_BUILDID=`cat $topsrcdir/aptana/jaxerBuildId.h | grep JAXER_BUILD_NUMBER | cut -f2 -d\"`
+JAXER_VERSION=`cat $topsrcdir/aptana/config/version.txt`
+JAXER_BUILDID=xxxx
+#JAXER_BUILDID=`cat $topsrcdir/aptana/jaxerBuildId.h | grep JAXER_BUILD_NUMBER | cut -f2 -d\"`
 # END JAXER INSERT
 
 cat >> confdefs.h <<EOF

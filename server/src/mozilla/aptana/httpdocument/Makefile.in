@@ -97,6 +97,8 @@ FORCE_STATIC_LIB = 1
 include $(topsrcdir)/config/rules.mk
 
 LOCAL_INCLUDES = \
+		-I$(srcdir)/../Jaxer \
+		-I$(srcdir)/../manager \
 		-I$(srcdir)/../aptanaFCGXLIB \
 		-I$(srcdir)/../../docshell/base \
 		$(NULL)

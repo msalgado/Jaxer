@@ -49,7 +49,6 @@
 
 #include <arpa/inet.h>
 #include <sys/wait.h>
-#include "jaxerBuildId.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -65,7 +64,10 @@
 #include <evutil.h>
 #include <syslog.h>
 
-#include "logclient.h"
+#include "aptLogClient.inc"
+#include "aptManagerMsgTypes.h"
+#include "aptManager.h"
+#include "aptLogLevel.h"
 
 // Include declarations common to Windows and Unix.
 #include "decl.h"
@@ -1380,7 +1382,7 @@ static void NewAdministrator(ConnectionWithSetting *cws)
     Administrator *a = new Administrator(cws->m_socket);
     delete cws;
     Log(eTRACE, "  created Admin %d s=%d", a, a->m_socket);
-    a->Write("JaxerManager " JAXER_BUILD_ID "\n\n");
+    a->Write("JaxerManager " JAXER_BUILDID "\n\n");
     a->Flush();
 }
 
@@ -1796,7 +1798,7 @@ int main(int argc, char **argv)
     }
     lc.SetVerboseOnError();
 
-    Log(eNOTICE, "JaxerManager " JAXER_BUILD_ID " (web %d, command %d)", g_ConnectionSettings[eWEB_JAXER_PROTOCOL].mPort, g_ConnectionSettings[eADMIN_JAXER_PROTOCOL].mPort);
+    Log(eNOTICE, "JaxerManager " JAXER_BUILDID " (web %d, command %d)", g_ConnectionSettings[eWEB_JAXER_PROTOCOL].mPort, g_ConnectionSettings[eADMIN_JAXER_PROTOCOL].mPort);
 
     Log(eTRACE, "event_init");
     // Initalize the event library

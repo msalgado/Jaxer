@@ -79,8 +79,8 @@ int WSAGetLastError(){ return errno;}
 #endif
 
 #include "jaxerProtocolVersion.h"
-#include "blockDump.h"
-#include "jaxerBuildId.h"
+#include "aptBlockDumper.h"
+#include "aptManagerMsgTypes.h"
 
 #include "tdate_parse.h"
 #include "match.h"
@@ -1140,7 +1140,7 @@ void HTTPStream::SendErrorDoc()
 <ADDRESS><A HREF=\"%s\">%s/%s</A></ADDRESS>\n\
 </BODY>\n\
 </HTML>\n",
-	SERVER_URL, SERVER_NAME, JAXER_BUILD_ID);
+	SERVER_URL, SERVER_NAME, JAXER_BUILDID);
 	buflen += len;
 
 	char sbuf[10];
@@ -2465,7 +2465,7 @@ nsresult HTTPStream::BeginResponse(PRInt32 status, const char* sStatus)
     strftime(buf, sizeof(buf), rfc1123_fmt, gmtime(&now) );
 	SetResponseHeader("Date", buf);
 
-	sprintf(buf, "%s/%s", SERVER_NAME, JAXER_BUILD_ID);
+	sprintf(buf, "%s/%s", SERVER_NAME, JAXER_BUILDID);
 	SetResponseHeader("Server", buf);
 
 	//SetResponseHeader("Content-Type", "text/html");

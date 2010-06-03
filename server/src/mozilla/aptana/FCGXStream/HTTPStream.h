@@ -40,6 +40,7 @@
 #include "prmon.h"
 #include "prio.h"
 #include "aptHTTPRequest.h"
+#include "aptManagerMsgTypes.h"
 #include <sys/types.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -51,7 +52,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <time.h>
-#include "JaxerDefs.h"
 
 #ifdef _WIN32
 #include <Winsock2.h>

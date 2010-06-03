@@ -50,7 +50,9 @@ AB_CD = en-US
 
 DEFINES += -DAB_CD=$(AB_CD) \
 	-DMOZ_APP_VERSION=\"$(MOZ_APP_VERSION)\" \
-	-DJAXER_FULL_VERSION=$(JAXER_VERSION).$(JAXER_BUILDID) \
+	-DJAXER_VERSION=\"$(JAXER_VERSION)\" \
+	-DJAXER_BUILDID=\"$(JAXER_BUILDID)\" \
+	-DJAXER_FULL_VERSION=\"$(JAXER_VERSION).$(JAXER_BUILDID)\" \
 	-DMOZ_WIDGET_TOOLKIT=\"$(MOZ_WIDGET_TOOLKIT)\"
 
 ifeq ($(OS_ARCH),SunOS)
@@ -168,11 +170,11 @@ endif
 endif
 
 LOCAL_INCLUDES = \
-		-I$(srcdir)/.. \
+		-I$(srcdir)/../manager \
+		-I$(srcdir)/../log \
 		-I$(srcdir)/../consoleListener \
 		-I$(srcdir)/../CoreTrace \
 		-I$(srcdir)/../httpdocument \
-		-I$(srcdir)/../JaxerPro \
 		-I$(srcdir)/../../../aptana_private/JaxerPro/LicenseValidator \
 		-I$(topsrcdir)/security/nss/lib/freebl \
 		$(NULL)

@@ -2,7 +2,7 @@
 #define __APT_MGR_CMD_READER_H__
 
 #include "nsThreadUtils.h"
-#include "JaxerDefs.h"
+#include "aptManager.h"
 
 #ifdef _WIN32
 #include <windows.h>

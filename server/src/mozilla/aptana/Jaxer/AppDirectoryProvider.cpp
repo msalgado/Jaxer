@@ -49,7 +49,6 @@
 #endif
 #include "stdlib.h"
 #include "AppDirectoryProvider.h"
-#include "jaxerBuildId.h"
 
 
 static nsresult
@@ -135,10 +134,10 @@ DeleteRegFiles(nsIFile *aDir)
     NS_ENSURE_SUCCESS(rv, rv);
     NS_ENSURE_TRUE(file, NS_ERROR_FAILURE);
 
-	file->AppendNative(NS_LITERAL_CSTRING("compreg_" JAXER_BUILD_ID ".dat"));
+	file->AppendNative(NS_LITERAL_CSTRING("compreg_" JAXER_BUILDID ".dat"));
 	file->Remove(PR_FALSE);
 
-	file->SetNativeLeafName(NS_LITERAL_CSTRING("xpti_" JAXER_BUILD_ID ".dat"));
+	file->SetNativeLeafName(NS_LITERAL_CSTRING("xpti_" JAXER_BUILDID ".dat"));
 	file->Remove(PR_FALSE);
 
 	file->SetNativeLeafName(NS_LITERAL_CSTRING(".autoreg"));
@@ -450,14 +449,14 @@ AppDirectoryProvider::GetFile
         NS_ENSURE_SUCCESS(rv, NS_ERROR_FAILURE);
         rv = mTmpDir->Clone(aFile);
         NS_ENSURE_SUCCESS(rv, NS_ERROR_FAILURE);
-        return (*aFile)->AppendNative(NS_LITERAL_CSTRING("compreg_" JAXER_BUILD_ID ".dat"));
+        return (*aFile)->AppendNative(NS_LITERAL_CSTRING("compreg_" JAXER_BUILDID ".dat"));
     }
     if (!strcmp(aProperty, NS_XPCOM_XPTI_REGISTRY_FILE)) {
         rv = InitTmpDir();
         NS_ENSURE_SUCCESS(rv, NS_ERROR_FAILURE);
         rv = mTmpDir->Clone(aFile);
         NS_ENSURE_SUCCESS(rv, NS_ERROR_FAILURE);
-        return (*aFile)->AppendNative(NS_LITERAL_CSTRING("xpti_" JAXER_BUILD_ID ".dat"));
+        return (*aFile)->AppendNative(NS_LITERAL_CSTRING("xpti_" JAXER_BUILDID ".dat"));
     }
 
     return NS_ERROR_FAILURE;

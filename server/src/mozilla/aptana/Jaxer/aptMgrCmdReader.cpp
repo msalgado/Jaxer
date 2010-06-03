@@ -4,7 +4,10 @@
 //#include "aptExitEvent.h"
 #include "aptCoreTrace.h"
 #include "jaxerProtocolVersion.h"
-#include "blockDump.h"
+#include "Jaxer.h"
+#include "aptManager.h"
+#include "aptManagerMsgTypes.h"
+#include "aptBlockDumper.h"
 #include "aptManagerCmdService.h"
 
 #ifndef _WIN32

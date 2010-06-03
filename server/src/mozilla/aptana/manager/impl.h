@@ -949,7 +949,7 @@ static void DoResume(Administrator *a)
 
 static void DoGetVersion(Administrator *a)
 {
-    a->Write("*** " JAXER_BUILD_ID "\r\n");
+    a->Write("*** " JAXER_BUILDID "\r\n");
 }
 
 static void DoTestCrash(Administrator *a, char *p)
@@ -973,7 +973,7 @@ static void DoGet(Administrator *a, char *p)
 
         if (strcmp(opt, "all") == 0)
         {
-            a->Write("version=" JAXER_BUILD_ID "\r\n");
+            a->Write("version=" JAXER_BUILDID "\r\n");
 			for (int k=0; k<eNAME_LAST; k++)
 			{
 				GeneralSetting *gs = &g_GeneralSettings[k];

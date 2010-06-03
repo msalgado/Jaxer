@@ -38,11 +38,7 @@ RCINCLUDE = Jaxer.rc
 include $(DEPTH)/config/autoconf.mk
 
 MODULE		= jaxer
-ifeq (,$(filter-out WINNT Darwin,$(OS_ARCH)))
-PROGRAM = Jaxer$(BIN_SUFFIX)
-else
 PROGRAM = jaxer$(BIN_SUFFIX)
-endif
 
 MOZILLA_INTERNAL_API = 1
 
@@ -54,7 +50,9 @@ AB_CD = en-US
 
 DEFINES += -DAB_CD=$(AB_CD) \
 	-DMOZ_APP_VERSION=\"$(MOZ_APP_VERSION)\" \
-	-DJAXER_FULL_VERSION=$(JAXER_VERSION).$(JAXER_BUILDID) \
+	-DJAXER_VERSION=\"$(JAXER_VERSION)\" \
+	-DJAXER_BUILDID=\"$(JAXER_BUILDID)\" \
+	-DJAXER_FULL_VERSION=\"$(JAXER_VERSION).$(JAXER_BUILDID)\" \
 	-DMOZ_WIDGET_TOOLKIT=\"$(MOZ_WIDGET_TOOLKIT)\"
 
 ifeq ($(OS_ARCH),SunOS)
@@ -180,7 +178,8 @@ endif
 endif
 
 LOCAL_INCLUDES = \
-		-I$(srcdir)/.. \
+		-I$(srcdir)/../manager \
+		-I$(srcdir)/../log \
 		-I$(srcdir)/../consoleListener \
 		-I$(srcdir)/../CoreTrace \
 		-I$(srcdir)/../httpdocument \

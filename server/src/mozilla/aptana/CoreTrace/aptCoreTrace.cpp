@@ -37,7 +37,7 @@
 #include "prprf.h"
 #include "nsString.h"
 #include "nspr.h"
-#include "../JaxerLog/logclient.h"
+#include "aptLogClient.inc"
 
 
 ////////////////////////////////////////////////////////////////////////////////

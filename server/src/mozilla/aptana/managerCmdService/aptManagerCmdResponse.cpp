@@ -34,6 +34,8 @@
 #include "aptManagerCmdResponse.h"
 #include "nsString.h"
 #include "aptCoreTrace.h"
+#include "aptManager.h"
+#include "aptManagerMsgTypes.h"
 
 extern aptCoreTrace gJaxerLog;
 

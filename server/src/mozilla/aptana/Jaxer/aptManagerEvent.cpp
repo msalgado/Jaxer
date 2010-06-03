@@ -4,6 +4,7 @@
 //#include "nsCOMPtr.h"
 #include "nsIServiceManager.h"
 //#include "nsXPCOM.h"
+#include "Jaxer.h"
 #include "aptCoreTrace.h"
 #include "aptDocumentFetcherService.h"
 #include "aptManagerCmdService.h"

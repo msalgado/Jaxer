@@ -34,7 +34,7 @@
 #define _aptCoreTrace_H_
 
 #include "nsCOMPtr.h"
-#include "../JaxerLog/log.h"
+#include "aptLogLevel.h"
 
 class nsIPrefBranch;
 struct PRMonitor;

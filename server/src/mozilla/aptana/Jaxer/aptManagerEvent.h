@@ -2,11 +2,8 @@
 #define __APT_EXIT_EVENT_H__
 
 #include "nsThreadUtils.h"
-#include "JaxerDefs.h"
-
-#ifdef _WIN32
-#include <Winsock2.h>
-#endif
+#include "aptManager.h"
+#include "aptManagerMsgTypes.h"
 
 class aptManagerEvent : public nsIRunnable 
 {

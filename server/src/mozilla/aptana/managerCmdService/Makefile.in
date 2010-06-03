@@ -69,6 +69,11 @@ EXPORTS = \
 		aptManagerCmdResponse.h	    \
 		aptCmdCallbackEvent.h	    \
 		$(NULL)
+
+		LOCAL_INCLUDES = \
+		        -I$(srcdir)/../manager \
+		        -I$(srcdir)/../Jaxer \
+				$(NULL)
         	
 include $(topsrcdir)/config/config.mk
 
@@ -76,8 +81,4 @@ include $(topsrcdir)/config/config.mk
 FORCE_STATIC_LIB = 1
 
 include $(topsrcdir)/config/rules.mk
-
-LOCAL_INCLUDES = \
-        -I$(srcdir)/../Jaxer/ \
-		$(NULL)
 		
