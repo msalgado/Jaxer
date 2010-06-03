@@ -36,28 +36,21 @@ VPATH		= @srcdir@
 
 include $(DEPTH)/config/autoconf.mk
 
-ifeq (,$(filter-out WINNT Darwin,$(OS_ARCH)))
-PROGRAM = JaxerLogger$(BIN_SUFFIX)
-else
 PROGRAM = jaxerlogger$(BIN_SUFFIX)
-endif
-
 DIST_PROGRAM = $(PROGRAM)
 
 REQUIRES	= \
 		$(NULL)
 
-LOCAL_INCLUDES += -I$(srcdir) \
-                  -I$(srcdir)/.. \
-                  -I$(topsrcdir)/toolkit/crashreporter/google-breakpad/src \
-                  $(NULL)
+#LOCAL_INCLUDES += -I$(srcdir) \
+#                  -I$(DEPTH)/toolkit/crashreporter/google-breakpad/src \
+#                  $(NULL)
 
 CPPSRCS = $(NULL)
 ifeq ($(OS_ARCH),WINNT)
 CPPSRCS += LogServerWin.cpp
 else
 CPPSRCS += LogServerUnix.cpp
-LOCAL_INCLUDES += -I$(topsrcdir)/../libevent/libevent-1.4.2-rc
 endif
 
 
@@ -70,15 +63,12 @@ endif
 
 ifeq ($(OS_ARCH),Darwin)
 OS_CXXFLAGS += -D_MAC
-OS_LIBS += -framework Cocoa \
-           -L$(topsrcdir)/../libevent/libevent-1.4.2-rc/.libs \
-           -levent
+OS_LIBS += -framework Cocoa
 endif
 
 ifeq ($(OS_ARCH),Linux)
 OS_CXXFLAGS += -frtti
 OS_LDFLAGS += -lrt -dl -lm
-OS_LIBS +=$(topsrcdir)/../libevent/libevent-1.4.2-rc/.libs/$(LIB_PREFIX)event.$(LIB_SUFFIX) 
 ifeq ($(OS_TEST), x86_64)
 DEFINES += -DLINUX_64
 endif
@@ -89,8 +79,22 @@ DEFINES += -DSOLARIS -D_REENTRANT
 OS_CXXFLAGS += $(MOZ_GTK2_CFLAGS) $(MOZ_GTHREAD_CFLAGS)
 OS_LIBS += $(MOZ_GTK2_LIBS) $(MOZ_GTHREAD_LIBS)
 OS_LDFLAGS +=  -lpthread -lssl -lelf -lxnet -lstdc++
-OS_LIBS +=$(topsrcdir)/../libevent/libevent-1.4.2-rc/.libs/$(LIB_PREFIX)event.$(LIB_SUFFIX)
 endif
+
+LOCAL_INCLUDES = \
+    -I$(srcdir)/../libevent \
+    -I$(DEPTH)/aptana/libevent \
+    -I$(srcdir)/../manager \
+    $(NULL)
+
+ifeq ($(OS_ARCH),OS2)
+$(DEPTH)/aptana/libevent/.libs/libevent.$(LIB_SUFFIX): $(DEPTH)/aptana/libevent/.libs/$(LIB_PREFIX)event.a
+	emxomf $<
+endif
+
+LIBS += \
+    $(DEPTH)/aptana/libevent/.libs/$(LIB_PREFIX)event.$(LIB_SUFFIX) \
+    $(NULL)
 
 ifdef 0
 #Cannot have crashreport here

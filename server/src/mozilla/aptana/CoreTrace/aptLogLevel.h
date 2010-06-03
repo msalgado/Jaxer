@@ -29,35 +29,21 @@
  *  Any modifications to this file must keep this entire header intact.
  * 
  * ***** END LICENSE BLOCK ***** */
-#ifndef __LOGSERVER_H__
-#define __LOGSERVER_H__
 
-#include <event.h>
-#include <evutil.h>
-#include "log.h"
-#include "LogServer.h"
+#ifndef __APT_LOGLEVEL_H__
+#define __APT_LOGLEVEL_H__
 
-void PipeReadReadyCallback(int fd, short evt, void* vp);
-void EventLogCB(int severity, const char* s);
-
-class LogServer : public LogServerBase
+enum eLogLevel
 {
-public:
-    LogServer();
-    ~LogServer();
-    bool Init();
-    void ProcessInputData();
-    void WriteLog(const char* severity, const char* msg, int len);
-    bool OpenLogForWrite();
-    bool CreateLogPipe();
-private:
-
-    int m_fdPipe;
-    //int m_fdLog;
-    // char * m_sLog;
-    // char * m_sPipe;
-    event m_ev;
+  eTRACE = 0,
+  eDEBUG,
+  eINFO,
+  eWARN,
+  eERROR,
+  eFATAL,
+  eNOTICE
 };
-  
-#endif // __LOGSERVER_H__
+
+
+#endif // __APT_LOGLEVEL_H__
 

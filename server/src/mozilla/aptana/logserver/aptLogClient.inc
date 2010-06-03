@@ -45,6 +45,22 @@
 #include <unistd.h>
 #include <sys/file.h>
 #include <time.h>
+
+#define HANDLE int
+#define INVALID_HANDLE_VALUE -1
+#define CloseHandle close
+#define DWORD int
+#define BOOL bool
+#define TCHAR char
+#define TRUE true
+#define FALSE false
+#define _tcslen strlen
+#define _tcscpy strcpy
+#define _tcsncmp strncmp
+#define _istspace isspace
+#define _tstoi atoi
+#define _pclose pclose
+
 #endif
 
 #include <sys/types.h>
@@ -57,13 +73,61 @@
 #include <string.h>
 #include <signal.h>
 
-
-//#define _DEBUG_JXLOG
-#include "log.h"
-
 #ifndef PIPE_BUF
 #define PIPE_BUF 512
 #endif
+
+#ifndef PATH_MAX
+#define PATH_MAX (FILENAME_MAX * 50)
+#endif
+
+#define MAX_BUF_SIZE 0x8000
+
+#ifdef _DEBUG_JXLOG
+#ifdef _WIN32
+#define JAXER_DEBUG_DUMP_FILE "c:\\jaxer_debug.log"
+#else
+#define JAXER_DEBUG_DUMP_FILE "/tmp/jaxer_debug.log"
+#include <stdarg.h>
+#endif
+
+
+// Simple function for debugging.
+static void logme(char* fmt, ...)
+{
+  char buf[1024];
+  va_list arg_ptr;
+  va_start(arg_ptr, fmt);
+  vsprintf(buf, fmt, arg_ptr);
+  va_end(arg_ptr);
+
+  time_t rawtime;
+  struct tm* tinfo;
+  time( &rawtime);
+  tinfo = localtime(&rawtime);
+  FILE *fp = fopen(JAXER_DEBUG_DUMP_FILE, "a");
+  fprintf(fp, "%02d:%02d:%02d %s\n",
+    tinfo->tm_hour, tinfo->tm_min, tinfo->tm_sec, buf);
+  fflush(fp);
+  fclose(fp);
+}
+#else
+static void logme(char* fmt, ...){} 
+#endif //DEBUG
+
+
+static char *gsLogLevel[10] =
+{
+  "TRACE",
+  "DEBUG",
+  "INFO",
+  "WARN",
+  "ERROR",
+  "FATAL",
+  "INFO",
+  NULL
+};
+
 
 static void 
 #ifndef _WIN32

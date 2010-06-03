@@ -47,7 +47,7 @@
 #pragma warning(disable : 4995)
 
 #include "LogServerWin.h"
-#include "log.h"
+#include "aptLog.h"
 
 #define DEFAULT_BACKUPS 10
 #define DEFAULT_FILESIZE 512

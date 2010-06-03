@@ -37,6 +37,8 @@
 #include <fcntl.h>
 #include <string.h>
 #include <pthread.h>
+#include "aptLogClient.inc"
+#include "aptLogLevel.h"
 #include "LogServerUnix.h"
 
 #ifdef _MAC

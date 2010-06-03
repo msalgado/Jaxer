@@ -36,7 +36,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <time.h>
-#include "log.h"
+#include "aptManager.h"
 
 #define DEFAULT_BACKUPS 10
 #define DEFAULT_FILESIZE 0x500000

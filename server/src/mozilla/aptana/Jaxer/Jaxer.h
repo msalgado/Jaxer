@@ -1,0 +1,16 @@
+#ifndef __JAXER_H__
+#define __JAXER_H__
+
+//#define JAXER_MAJOR_VERSION "1.0.99"
+//#define JAXER_BUILD_ID "1.0.99." JAXER_BUILD_NUMBER
+//#define JAXER_PLATFORM_BUILD_ID "20100401064631"
+//#define JAXER_BUILD_ID_L L"1.0.99." JAXER_BUILD_NUMBER
+
+enum eJAXER_STATE
+{
+     eRUNNING
+    ,eEXITING
+};
+
+
+#endif // __JAXER_H__
