@@ -36,11 +36,7 @@ VPATH		= @srcdir@
 
 include $(DEPTH)/config/autoconf.mk
 
-ifeq (,$(filter-out WINNT Darwin,$(OS_ARCH)))
-PROGRAM = TellJaxerManager$(BIN_SUFFIX)
-else
 PROGRAM = telljaxermanager$(BIN_SUFFIX)
-endif
 
 DIST_PROGRAM = $(PROGRAM)
 
@@ -53,8 +49,6 @@ endif
 
 CPPSRCS = tellManager.cpp \
           $(NULL)
-
-LOCAL_INCLUDES += -I$(srcdir)
 
 ifeq ($(OS_ARCH),WINNT)
 OS_CXXFLAGS += -O2 -GL -FD -EHsc -MD -Wp64 -Zi -TP

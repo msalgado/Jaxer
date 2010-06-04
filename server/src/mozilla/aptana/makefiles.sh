@@ -34,6 +34,7 @@ add_makefiles "
   aptana/manager/Makefile
   aptana/tellManager/Makefile
   aptana/logserver/Makefile
+  aptana/framework/Makefile
   aptana/Jaxer/Makefile
   aptana/JaxerPro/Makefile
   aptana/Jaxer/js/Makefile

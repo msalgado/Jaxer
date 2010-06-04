@@ -38,6 +38,8 @@ ifdef MOZ_EXTENSIONS
 tier_app_dirs += extensions
 endif
 
-tier_app_dirs += aptana/FCGXStream aptana/httpdocument aptana/logserver aptana/manager aptana/Jaxer
+tier_app_dirs += aptana/FCGXStream aptana/httpdocument aptana/logserver aptana/manager aptana/tellManager aptana/Jaxer
+tier_app_dirs += aptana/framework
+
 #tier_app_dirs += aptana/JaxerPro
 
