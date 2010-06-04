@@ -33,6 +33,7 @@
 # to the top of your mozconfig file.
 
 mk_add_options MOZ_CO_PROJECT=jaxer
+mk_add_options MOZ_POSTFLIGHT=aptana/build/postbuild.mk
 ac_add_options --enable-application=aptana
 ac_add_options --with-distribution-id=aptana.com
 
