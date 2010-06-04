@@ -34,18 +34,38 @@ topsrcdir	= @top_srcdir@
 srcdir		= @srcdir@
 VPATH		= @srcdir@
 
+objdir = $(shell pwd)
+
 include $(DEPTH)/config/autoconf.mk
 
-libs:: 
-	echo "SERVER_OUTPUT=\"serverFramework.js\"; JSLIB_OUTPUT=\"JSLib.js\"; CLIENT_OUTPUT=\"clientFramework.js\"; API_OUTPUT=\"api_sdoc.js\";" > buildConfig.js
-	echo "LICENSE_HEADER = \"$(srcdir)/framework_header.txt\"; COMPRESSED_LICENSE_HEADER = \"$(srcdir)/framework_compressed_header.txt\";" >> buildConfig.js
+FILES = serverFramework.js \
+		clientFramework.js \
+		clientFramework_compressed.js \
+		JSLib.js \
+		api_sdoc.js \
+		config.js \
+		configLog.js \
+		configApps.js \
+		studio_config.js \
+		src/ \
+		extensions/
+
+libs:: $(FILES)
+	cp -r $(srcdir)/* .
+	echo "SERVER_OUTPUT=\"$(objdir)/serverFramework.js\";" > buildConfig.js
+	echo "JSLIB_OUTPUT=\"$(objdir)/JSLib.js\";" >> buildConfig.js
+	echo "CLIENT_OUTPUT=\"$(objdir)/clientFramework.js\";" >> buildConfig.js
+	echo "API_OUTPUT=\"$(objdir)/api_sdoc.js\";" >> buildConfig.js
+	echo "LICENSE_HEADER = \"framework_header.txt\";" >> buildConfig.js
+	echo "COMPRESSED_LICENSE_HEADER = \"framework_compressed_header.txt\";" >> buildConfig.js
+	
 	java -showversion -Xmx512m -jar \
 	$(topsrcdir)/aptana/build/auto-builder.jar \
-	$(srcdir)/scripts/auto_builder.js \
-	$(srcdir)/build.json \
+	scripts/auto_builder.js \
+	$(objdir)/build.json \
 	CONFIG_FILE=buildConfig.js
 ifndef NO_DIST_INSTALL
-#	$(INSTALL) $(IFLAGS1) $^ $(FINAL_TARGET)/components
+	$(INSTALL) $(IFLAGS1) $^ $(FINAL_TARGET)/framework
 endif
 
 include $(topsrcdir)/config/rules.mk

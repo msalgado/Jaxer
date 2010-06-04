@@ -185,7 +185,7 @@ var propertyHandlers = {
         for (var i = 0; i < files.length; i++) 
         {
             var filename = files[i];
-            var nestedFilename = currentPath + File.separator + filename;
+            var nestedFilename = new File(filename).exists ? filename : currentPath + File.separator + filename;
             var nestedFile = new File(nestedFilename);
             
             // normalize path
@@ -966,7 +966,7 @@ function runTop(file, targets, targetName)
         
         for (var i = 0; i < outputs.length; i++) 
         {
-            var outputName = currentPath + File.separator + outputs[i];
+            var outputName = /*currentPath + File.separator +*/ outputs[i];
             var outputFile = new File(outputName);
 			
 			writeToFile(outputFile, text);
@@ -977,7 +977,7 @@ function runTop(file, targets, targetName)
 			if (compress)
 			{
 				// bit of a hack to calculate compressed file name
-				outputName = currentPath + File.separator + outputs[i];
+				outputName = /*currentPath + File.separator +*/ outputs[i];
 				outputName = outputName.replace(/\.js/, "_compressed.js");
 				
 				// create compressed text
@@ -1146,7 +1146,7 @@ function loadConfig(configFile)
 	
 	// get the license header contents to be prepended to generated files
 	var baseDir 	= new File(location).parentFile.parentFile.absolutePath
-	var licenseFile = new File(baseDir+File.separator+LICENSE_HEADER);
+	var licenseFile = new File(/*baseDir+File.separator+*/LICENSE_HEADER);
 	
 	LICENSE_TEXT = licenseFile.readLines().join("\n");
 
