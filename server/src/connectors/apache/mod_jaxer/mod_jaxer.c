@@ -45,11 +45,10 @@
 #include "mod_jaxer_filter.h"
 #include "mod_jaxer_protocol.h"
 #include "mod_jaxer_connection.h"
-#include "../../../../mozilla/aptana/jaxerBuildId.h"
 
 module AP_MODULE_DECLARE_DATA jaxer_module;
 
-#define	MODULE_VERSION	"ModJaxer/" JAXER_BUILD_ID
+#define	MODULE_VERSION	"ModJaxer/" JAXER_BUILDID
 
 static ap_filter_rec_t *jaxer_in_filter_handle;
 static ap_filter_rec_t *jaxer_out_filter_handle;
