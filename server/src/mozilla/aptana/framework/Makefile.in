@@ -50,7 +50,7 @@ FILES = serverFramework.js \
 		src/ \
 		extensions/
 
-libs:: $(FILES)
+libs::
 	cp -r $(srcdir)/* .
 	echo "SERVER_OUTPUT=\"$(objdir)/serverFramework.js\";" > buildConfig.js
 	echo "JSLIB_OUTPUT=\"$(objdir)/JSLib.js\";" >> buildConfig.js
@@ -65,7 +65,7 @@ libs:: $(FILES)
 	$(objdir)/build.json \
 	CONFIG_FILE=buildConfig.js
 ifndef NO_DIST_INSTALL
-	$(INSTALL) $(IFLAGS1) $^ $(FINAL_TARGET)/framework
+	$(INSTALL) $(IFLAGS1) $(FILES) $(FINAL_TARGET)/framework
 endif
 
 include $(topsrcdir)/config/rules.mk
