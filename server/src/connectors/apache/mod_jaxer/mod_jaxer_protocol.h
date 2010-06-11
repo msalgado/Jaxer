@@ -33,7 +33,7 @@
 #define FCGID_PROTOCOL_H
 
 #include "httpd.h"
-#include "../../../mozilla/aptana/manager/jaxerProtocolVersion.h"
+#include "jaxerProtocolVersion.h"
 
 
 /*
