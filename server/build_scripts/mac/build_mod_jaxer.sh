@@ -5,7 +5,7 @@ APACHE_SRCPATH=$4
 
 rm -rf ${DISTROPATH}
 mkdir ${DISTROPATH}
-#./build_httpd.sh $APACHE_SRCPATH $BUILDPATH/httpd /. $BUILDPATH/httpd_dist
+./build_httpd.sh $APACHE_SRCPATH $BUILDPATH/httpd /. $BUILDPATH/httpd_dist
 
 mkdir $BUILDPATH/mod_jaxer
 cd $BUILDPATH/mod_jaxer

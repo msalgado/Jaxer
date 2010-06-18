@@ -186,7 +186,8 @@ aptCoreLog::NotifyListeners(PRInt32 type, const nsACString& message)
 	nsCOMPtr<aptICoreLogListener> listener;
     rv = listenersSnapshot.Count(&snapshotCount);
 	NS_ENSURE_SUCCESS(rv, );
-	NS_ENSURE_TRUE(snapshotCount, );
+	if (!snapshotCount)
+		return;
 	
 	{
         nsAutoLock lock(mLock);

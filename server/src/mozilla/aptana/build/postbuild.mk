@@ -25,7 +25,29 @@ FILES_TO_REMOVE = \
 	nspr-config \
 	nsinstall \
 	regxpcom \
-	js
+	js \
+	chrome/comm.jar \
+	chrome/comm.manifest \
+	chrome/pippki.jar \
+	chrome/pippki.manifest \
+	chrome/toolkit.jar \
+	libsqlite3.dylib
+	
+FILES_TO_COPY = \
+	aptana/build/common/ \
+
+ifeq ($(OS_ARCH),WINNT)
+FILES_TO_COPY += \
+	aptana/build/win/
+endif
+ifeq ($(OS_ARCH),Darwin)
+FILES_TO_COPY += \
+	aptana/build/mac/
+endif
+ifeq ($(OS_ARCH),Linux)
+FILES_TO_COPY += \
+	aptana/build/linux/
+endif
 
 postflight:
 	echo Package all xpt files into a single file
@@ -35,7 +57,8 @@ postflight:
 	rm -f $(OBJDIR)/dist/bin/components/*.xpt
 	mv $(OBJDIR)/dist/bin/components/components.xpt_ $(OBJDIR)/dist/bin/components/components.xpt
 	
-	$(foreach file,$(FILES_TO_REMOVE),rm -f $(OBJDIR)/dist/bin/$(file))
+	$(foreach file,$(FILES_TO_REMOVE),rm -f $(OBJDIR)/dist/bin/$(file);)
+	$(foreach file,$(FILES_TO_COPY),cp -pLR $(TOPSRCDIR)/$(file) $(OBJDIR)/dist/bin/;)
 		
 ifdef MOZ_CRASHREPORTER
 	$(MAKE) -C $(OBJDIR) buildsymbols BUILDID=$(JAXER_BUILDID)

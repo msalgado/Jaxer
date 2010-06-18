@@ -1,6 +1,7 @@
 . $topsrcdir/aptana/config/mozconfig
 mk_add_options MOZ_MAKE_FLAGS="-s -j4"
 
+#ac_add_options --disable-system-sqlite
 ac_add_options --disable-jemalloc
 ac_add_options --enable-static --disable-shared
 ac_add_options --disable-optimize --enable-debug
