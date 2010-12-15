@@ -507,9 +507,9 @@ apr_status_t jxr_connect_socket(jaxer_connection * ac)
 	}
 
 #ifdef _APACHE20
-	rv = apr_socket_create_ex(&sock, APR_INET, SOCK_STREAM, APR_PROTO_TCP, p);
-#else
 	rv = apr_socket_create(&sock, APR_INET, SOCK_STREAM, APR_PROTO_TCP, p);
+#else
+	rv = apr_socket_create(&sock, APR_INET, SOCK_STREAM, /*APR_PROTO_TCP,*/ p);
 #endif
 
 	if (rv != APR_SUCCESS)

@@ -7155,7 +7155,7 @@ else
 fi
 rm -f conftest*
        fi
-       WARNINGS_AS_ERRORS='-Werror'
+       WARNINGS_AS_ERRORS=''
        MOZ_OPTIMIZE_FLAGS="-xO4"
        MKSHLIB='$(CXX) $(CXXFLAGS) $(DSO_PIC_FLAGS) $(DSO_LDOPTS) -h $@ -o $@'
        MKCSHLIB='$(CC) $(CFLAGS) $(DSO_PIC_FLAGS) -G -z muldefs -h $@ -o $@'

@@ -41,8 +41,8 @@
 
 #include "gfxASurface.h"
 
-#include <X11/extensions/Xrender.h>
 #include <X11/Xlib.h>
+#include <X11/extensions/Xrender.h>
 
 class THEBES_API gfxXlibSurface : public gfxASurface {
 public:

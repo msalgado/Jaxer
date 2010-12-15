@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.6
 from local_settings import cfg
 from global_settings import gcfg
 import os
@@ -89,6 +89,12 @@ def filesmatching(path, prefix, pattern):
 unlinkifexists('distro/Jaxer_package_withApache.zip')
 unlinkifexists('distro/Jaxer_package.zip')
 unlinkifexists('distro/Jaxer_update.zip')
+
+make = 'make'
+ar = 'ar'
+if GetOS() == SOLARIS:
+    make = 'gmake'
+    ar = 'gar'
 
 # Put the build number into a header file.  Don't touch the header file unless
 # the number actually changes in order to minimize recompilations.
@@ -207,22 +213,22 @@ if cfg['skipBuilds'] == False:
 
 
     # Build google_breakpad that we will use late
-    print "\n===== Building google_breakpad."
-    if GetOS() == WINDOWS:
-        system('cd src/google/google_breakpad/src/client/windows && MSBuild.exe breakpad_client.sln /p:Configuration=release')
-        #system('cd src/google/google_breakpad/src/tools/windows/dump_syms && MSBuild.exe dump_syms.vcproj /p:Configuration=release')
-    elif GetOS() == MACOS:
-        system('cd src/google/google_breakpad && export CFLAGS="-arch ppc -arch i386" && ./configure && make')
-        #system('cd src/google/google_breakpad/src/tools/mac/dump_syms && make')
-    else:
-        system('cd src/google/google_breakpad && ./configure && make')
-
+#    print "\n===== Building google_breakpad."
+#    if GetOS() == WINDOWS:
+#        system('cd src/google/google_breakpad/src/client/windows && MSBuild.exe breakpad_client.sln /p:Configuration=release')
+#        #system('cd src/google/google_breakpad/src/tools/windows/dump_syms && MSBuild.exe dump_syms.vcproj /p:Configuration=release')
+#    elif GetOS() == MACOS:
+#        system('cd src/google/google_breakpad && export CFLAGS="-arch ppc -arch i386" && ./configure && '+make)
+#        #system('cd src/google/google_breakpad/src/tools/mac/dump_syms && make')
+#    else:
+#        system('cd src/google/google_breakpad && ./configure MAKE=%s AR=%s && %s' % (make, ar, make))
+#
     # Build libevent
     print "\n===== Building libevent."
     if GetOS() == MACOS:
-        system('cd src/libevent/libevent-1.4.2-rc && export CFLAGS="-arch ppc -arch i386" && ./configure && make')
+        system('cd src/libevent/libevent-1.4.2-rc && export CFLAGS="-arch ppc -arch i386" && ./configure && '+make)
     elif GetOS() != WINDOWS:
-        system('cd src/libevent/libevent-1.4.2-rc && ./configure && make')
+        system('cd src/libevent/libevent-1.4.2-rc && ./configure MAKE=%s AR=%s && %s' % (make, ar, make))
         copyfile('src/libevent/libevent-1.4.2-rc/.libs/libevent-1.4.so.2',
                  'src/mozilla/' + ffdir + '/dist/bin/')
 
@@ -263,40 +269,40 @@ if cfg['skipBuilds'] == False:
 #                 'src/mozilla/' + ffdir + '/dist/bin/JaxerManager.cfg')
 
     # Build LogServer
-    print "\n===== Building JaxerLogger."
-    if GetOS() == WINDOWS:
-        system('cd src/Utils/JaxerLog && MSBuild.exe JaxerLog.vcproj')
-        copyfile('src/Utils/JaxerLog/Release/JaxerLogger.exe',
-                 'src/mozilla/' + ffdir + '/dist/bin/JaxerLogger.exe')
-    elif GetOS() == SOLARIS:
-        system('cd src/Utils/JaxerLog && gcc -I../../libevent/libevent-1.4.2-rc -o jaxerlogger LogServerUnix.cpp -L../../libevent/libevent-1.4.2-rc/.libs -levent -lxnet -lstdc++')
-        copyfile('src/Utils/JaxerLog/jaxerlogger',
-                 'src/mozilla/' + ffdir + '/dist/bin/jaxerlogger')
-    elif GetOS()+'x' == LINUX:
-        system('cd src/Utils/JaxerLog && g++ -I../../libevent/libevent-1.4.2-rc -L../../libevent/libevent-1.4.2-rc/.libs -levent -lrt -o jaxerlogger LogServerUnix.cpp')
-        copyfile('src/Utils/JaxerLog/jaxerlogger',
-                 'src/mozilla/' + ffdir + '/dist/bin/jaxerlogger')
-    elif GetOS() == MACOS:
-        system('cd src/Utils/JaxerLog && bash ./buildMacUniversal.sh')
-        copyfile('src/Utils/JaxerLog/JaxerLogger',
-                 'src/mozilla/' + ffdir + '/ppc/dist/bin/JaxerLogger')
-        copyfile('src/Utils/JaxerLog/JaxerLogger',
-                 'src/mozilla/' + ffdir + '/i386/dist/bin/JaxerLogger')
+#    print "\n===== Building JaxerLogger."
+#    if GetOS() == WINDOWS:
+#        system('cd src/Utils/JaxerLog && MSBuild.exe JaxerLog.vcproj')
+#        copyfile('src/Utils/JaxerLog/Release/JaxerLogger.exe',
+#                 'src/mozilla/' + ffdir + '/dist/bin/JaxerLogger.exe')
+#    elif GetOS() == SOLARIS:
+#        system('cd src/Utils/JaxerLog && gcc -I../../libevent/libevent-1.4.2-rc -o jaxerlogger LogServerUnix.cpp -L../../libevent/libevent-1.4.2-rc/.libs -levent -lxnet -lstdc++')
+#        copyfile('src/Utils/JaxerLog/jaxerlogger',
+#                 'src/mozilla/' + ffdir + '/dist/bin/jaxerlogger')
+#    elif GetOS()+'x' == LINUX:
+#        system('cd src/Utils/JaxerLog && g++ -I../../libevent/libevent-1.4.2-rc -L../../libevent/libevent-1.4.2-rc/.libs -levent -lrt -o jaxerlogger LogServerUnix.cpp')
+#        copyfile('src/Utils/JaxerLog/jaxerlogger',
+#                 'src/mozilla/' + ffdir + '/dist/bin/jaxerlogger')
+#    elif GetOS() == MACOS:
+#        system('cd src/Utils/JaxerLog && bash ./buildMacUniversal.sh')
+#        copyfile('src/Utils/JaxerLog/JaxerLogger',
+#                 'src/mozilla/' + ffdir + '/ppc/dist/bin/JaxerLogger')
+#        copyfile('src/Utils/JaxerLog/JaxerLogger',
+#                 'src/mozilla/' + ffdir + '/i386/dist/bin/JaxerLogger')
 
 
     print "\n===== Building Jaxer." 
     if GetOS() == WINDOWS:
-        system('bash.exe --login -c "cd %s; make -f client.mk build && %s/dist/bin/Jaxer.exe -reg"' % (path, ffdir))
+        system('bash.exe --login -c "cd %s; %s -f client.mk build && %s/dist/bin/Jaxer.exe -reg"' % (path, make, ffdir))
     elif GetOS() == MACOS:
         os.environ['LD_LIBRARY_PATH'] = '.'
-        system('cd %s && touch configure && make -f client.mk build && cd %s/dist/bin && ./Jaxer -reg' % (path, ffdir))
+        system('cd %s && touch configure && %s -f client.mk build && cd %s/dist/bin && ./Jaxer -reg' % (path, make, ffdir))
     elif GetOS() == LINUX:
         os.environ['LD_LIBRARY_PATH'] = '.'
-        system('cd %s && touch configure && make -f client.mk build && cd %s/dist/bin' % (path, ffdir))
+        system('cd %s && touch configure && %s -f client.mk build && cd %s/dist/bin' % (path, make, ffdir))
         system('cd %s/%s/dist/bin && ./jaxer -reg' % (path, ffdir))
     elif GetOS() == SOLARIS:
-        os.environ['LD_LIBRARY_PATH'] = '.'
-        system('cd %s && touch configure && gmake -f client.mk build && cd %s/dist/bin' % (path, ffdir))
+	os.environ['PKG_CONFIG_PATH'] = '/usr/lib/gnome-private/lib/pkgconfig'
+        system('cd %s && touch configure && %s -f client.mk build && cd %s/dist/bin' % (path, make, ffdir))
         system('cd %s/%s/dist/bin && ./jaxer -reg' % (path, ffdir))
 
     # On Mac, these files have to be copied after Jaxer is built

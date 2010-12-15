@@ -255,6 +255,10 @@ SHARED_LIBRARY_LIBS += $(CRASHREPORTER_LIBS)
 endif
 endif
 
+ifeq ($(OS_ARCH),SunOS)
+EXTRA_LIBS += -lnsl
+endif
+
 RCFLAGS += -I$(srcdir)
 
 libs::

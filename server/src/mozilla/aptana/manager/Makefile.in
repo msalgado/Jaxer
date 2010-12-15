@@ -89,7 +89,7 @@ ifeq ($(OS_ARCH),SunOS)
 DEFINES += -DSOLARIS -D_REENTRANT
 OS_CXXFLAGS += $(MOZ_GTK2_CFLAGS) $(MOZ_GTHREAD_CFLAGS)
 OS_LIBS += $(MOZ_GTK2_LIBS) $(MOZ_GTHREAD_LIBS)
-OS_LDFLAGS +=  -lpthread -lssl -lelf -lxnet -lstdc++
+OS_LDFLAGS +=  -lpthread -lssl -lelf -lxnet -lstdc++ -lnsl -lrt
 OS_LIBS +=$(topsrcdir)/../libevent/libevent-1.4.2-rc/.libs/$(LIB_PREFIX)event.$(LIB_SUFFIX)
 endif
 
