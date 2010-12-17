@@ -179,21 +179,18 @@ std::string Demangle(const char *mangled) {
   char *demangled = (char *)malloc(demangleLen);
   if (!demangled) {
     fprintf(stderr, "no enough memory.\n");
-    goto out;
+    return std::string(mangled);
   }
 
   if ((status = cplus_demangle(mangled, demangled, demangleLen)) ==
       DEMANGLE_ESPACE) {
     fprintf(stderr, "incorrect demangle.\n");
-    goto out;
+    return std::string(mangled);
   }
 
   std::string str(demangled);
   free(demangled);
   return str;
-
-out:
-  return std::string(mangled);
 }
 
 bool WriteFormat(int fd, const char *fmt, ...) {

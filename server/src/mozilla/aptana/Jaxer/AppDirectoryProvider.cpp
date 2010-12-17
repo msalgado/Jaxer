@@ -45,6 +45,7 @@
 #include <CFURL.h>
 #include <CFBundle.h>
 #elif defined(XP_UNIX)
+#define __EXTENSIONS__
 #include <dlfcn.h>
 #include <unistd.h>                                                                                                  
 #endif

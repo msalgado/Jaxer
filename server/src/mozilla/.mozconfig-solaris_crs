@@ -11,8 +11,8 @@ ac_add_options --enable-crashreporter
 
 CC=/opt/solstudio12.2/bin/cc
 CXX=/opt/solstudio12.2/bin/CC
-CFLAGS="-g -xs -xdebugformat=stabs -I/opt/csw/include"
-CPPFLAGS="-I/opt/csw/include"
+CFLAGS="-g -xs -xdebugformat=stabs -I/usr/sfw/include -I/opt/csw/include"
+CPPFLAGS="-I/usr/sfw/include -I/opt/csw/include"
 CXXFLAGS="-g0 -xs -xdebugformat=stabs"
 LDFLAGS="-L/usr/sfw/lib -R/usr/sfw/lib"
 RANLIB=/bin/true
@@ -22,4 +22,4 @@ ac_add_options --x-includes=/usr/openwin/include
 ac_add_options --x-libraries=/usr/openwin/lib
 
 mk_add_options PATH=$PATH:/usr/ccs/bin
-mk_add_options LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/csw/lib
+mk_add_options LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/sfw/lib
