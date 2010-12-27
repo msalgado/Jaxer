@@ -28,5 +28,6 @@ server/src/connectors/servlet/products/
 server/src/connectors/servlet/*.jar
 server/src/mozilla/.mozconfig
 server/src/mozilla/.mozconfig.mk
+server/src/mozilla/.mozconfig.out
 server/src/mozilla/ff-release/
 server/src/mozilla/ff-debug/
