@@ -1645,7 +1645,9 @@ aptHTTPRequest::LoadImage(nsIDOMHTMLImageElement *image)
         NS_ENSURE_SUCCESS(rv, rv);
 
 		if (!imgRequest) {
+		imageLoader->SetLoadingEnabled(PR_TRUE);
 	        rv = imageLoader->ForceReload();
+		imageLoader->SetLoadingEnabled(PR_FALSE);
             NS_ENSURE_SUCCESS(rv, rv);
 			rv = imageLoader->GetRequest(nsIImageLoadingContent::CURRENT_REQUEST,
 										 getter_AddRefs(imgRequest));

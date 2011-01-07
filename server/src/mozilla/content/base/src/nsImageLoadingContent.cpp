@@ -115,7 +115,11 @@ static void PrintReqURL(imgIRequest* req) {
 nsImageLoadingContent::nsImageLoadingContent()
   : mObserverList(nsnull),
     mImageBlockingStatus(nsIContentPolicy::ACCEPT),
+#ifdef JAXER
+    mLoadingEnabled(PR_FALSE),
+#else
     mLoadingEnabled(PR_TRUE),
+#endif /* JAXER */
     mStartingLoad(PR_FALSE),
     mLoading(PR_FALSE),
     // mBroken starts out true, since an image without a URI is broken....
