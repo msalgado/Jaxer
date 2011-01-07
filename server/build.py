@@ -190,7 +190,7 @@ if cfg['skipBuilds'] == False:
         if gcfg['doCleanBuild'] == True:
             do_remove_dir('src/mozilla/' + ffdir)
             print "\n======= This is a clean build of Jaxer ======="
-        else:
+        elif gcfg['doCleanBuildIfNotToday'] == True:
             remove_dir_if_not_created_today('src/mozilla/' + ffdir)
 
     for adir in dirs_to_be_removed:
