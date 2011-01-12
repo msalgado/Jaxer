@@ -111,7 +111,7 @@
 
 #include "JaxerDefs.h"
 
-#if defined(MOZ_WIDGET_GTK2)
+#if defined(MOZ_WIDGET_GTK2) && !defined(JAXER_NO_XSERVER)
 #include <gtk/gtk.h>
 #endif
 
@@ -960,7 +960,7 @@ int jaxerMain(int argc, char **argv)
 	    nsCOMPtr<nsICertOverrideService> overrideService = do_GetService(NS_CERTOVERRIDE_CONTRACTID);
 	}
     
-#if defined(MOZ_WIDGET_GTK2)
+#if defined(MOZ_WIDGET_GTK2) && !defined(JAXER_NO_XSERVER)
     gtk_init_check(&argc, &argv);
 #endif
 
