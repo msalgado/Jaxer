@@ -9,7 +9,7 @@ cfg = {
         'jam_mount':            '',
 
         'apache-name':          'httpd',
-        'apxs-name':		'LTFLAGS="--tag=CC" /usr/apache2/bin/apxs -c -S CC=/opt/solstudio12.2/bin/cc',
+        'apxs-name':		'LTFLAGS="--tag=CC" /usr/apache2/bin/apxs -D_APACHE20=1 -c -S CC=/opt/solstudio12.2/bin/cc',
         'jaxermanager-name':    'jaxermanager',
         'browser':              'firefox',
         'browser-name':         'firefox',
